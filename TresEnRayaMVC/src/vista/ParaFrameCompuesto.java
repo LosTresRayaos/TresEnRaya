@@ -1,13 +1,12 @@
-package modelo;
-
-import boceto.MyButton;
+package vista;
 
 public class ParaFrameCompuesto extends FrameCompuesto {
 
 	public ParaFrameCompuesto() {
 		super();
-		getBoton(2, 2).setText("O");
-		
+		getBoton(1, 2).setText("O");
 	}
+		
+
 
 }

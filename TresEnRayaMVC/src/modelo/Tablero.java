@@ -1,5 +1,7 @@
 package modelo;
 
+import vista.Coordenada;
+
 public class Tablero {
 	public int tablero[][] = { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } };
 

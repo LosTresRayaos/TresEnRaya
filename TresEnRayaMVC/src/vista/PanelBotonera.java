@@ -1,4 +1,4 @@
-package modelo;
+package vista;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -6,11 +6,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import boceto.MyButton;
+import control.Controlador;
 
 public class PanelBotonera extends JPanel {
 
 	private MyButton botonera[][]=new MyButton[3][3];
+	private Controlador control = new Controlador();
 	
 	public PanelBotonera() {
 		crearBotones();
@@ -24,7 +25,7 @@ public class PanelBotonera extends JPanel {
 				botonera[i][j] .addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-				System.out.println("hola soy "+((MyButton)e.getSource()).getCoordenada().toString());
+				control.getCasilla((MyButton)e.getSource());
 				}
 			});
 			this.add(botonera[i][j] );

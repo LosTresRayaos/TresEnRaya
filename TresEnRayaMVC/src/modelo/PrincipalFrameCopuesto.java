@@ -2,6 +2,8 @@ package modelo;
 
 import java.awt.EventQueue;
 
+import vista.ParaFrameCompuesto;
+
 public class PrincipalFrameCopuesto {
 	/**
 	 * Launch the application.

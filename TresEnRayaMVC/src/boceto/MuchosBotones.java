@@ -6,7 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import modelo.Coordenada;
+import vista.Coordenada;
+import vista.MyButton;
 
 import javax.swing.JButton;
 import java.awt.GridLayout;
