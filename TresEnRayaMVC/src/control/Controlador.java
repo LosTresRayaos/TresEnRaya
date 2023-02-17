@@ -11,6 +11,6 @@ public class Controlador {
 	}
 	
 	public void setCasilla(MyButton button, String turno) {
-		button.setText(turno);
+		
 	}
 }
