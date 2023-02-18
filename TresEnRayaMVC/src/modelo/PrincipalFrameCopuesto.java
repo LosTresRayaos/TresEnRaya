@@ -2,7 +2,7 @@ package modelo;
 
 import java.awt.EventQueue;
 
-import vista.ParaFrameCompuesto;
+import control.ParaFrameCompuesto;
 
 public class PrincipalFrameCopuesto {
 	/**

@@ -19,7 +19,7 @@ import java.awt.event.MouseEvent;
 public class FrameCompuesto extends JFrame {
 
 	private JPanel contentPane;
-	private PanelBotonera panel;
+	protected PanelBotonera panel;
 
 	
 
@@ -42,7 +42,7 @@ public class FrameCompuesto extends JFrame {
 		
 		panel = new PanelBotonera();
 
-		panel.setBounds(59, 90, 326, 160);
+		panel.setBounds(0, 37, 434, 224);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(3, 3, 0, 0));
 		panel.getBoton(1,1).setText("X");
