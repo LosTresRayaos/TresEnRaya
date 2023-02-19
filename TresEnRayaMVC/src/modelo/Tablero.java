@@ -3,14 +3,14 @@ package modelo;
 import vista.Coordenada;
 
 public class Tablero {
-	public int tablero[][] = { { 0, 0, 0 }, { 0, 1, 0 }, { 0, 0, 0 } };
+	public int tablero[][] = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
 
 	public int getValorPosicion(Coordenada coordenada) {
-		return tablero[coordenada.getX()][coordenada.getY()];
+		return this.tablero[coordenada.getX()][coordenada.getY()];
 	}
 
 	public void setValorPosicion(Coordenada coordenada, int i) {
-		tablero[coordenada.getX()][coordenada.getY()]=i;
+		this.tablero[coordenada.getX()][coordenada.getY()]=i;
 		
 	}
 	/**
@@ -20,7 +20,7 @@ public class Tablero {
 	 */
 	private boolean compruebaFila() {
 		for (int x = 0; x < 3; x++)
-			if (tablero[x][0] == tablero[x][1] && tablero[x][1] == tablero[x][2] && tablero[x][1] != 0)
+			if (this.tablero[x][0] == this.tablero[x][1] && this.tablero[x][1] == this.tablero[x][2] && this.tablero[x][1] != 0)
 				return true;
 		return false;
 	}
@@ -32,7 +32,7 @@ public class Tablero {
 	 */
 	private boolean compruebaColumna() {
 		for (int y = 0; y < 3; y++)
-			if (tablero[0][y] == tablero[1][y] && tablero[1][y] == tablero[2][y] && tablero[1][y] != 0)
+			if (this.tablero[0][y] == this.tablero[1][y] && this.tablero[1][y] == this.tablero[2][y] && this.tablero[1][y] != 0)
 				return true;
 		return false;
 	}
@@ -44,9 +44,9 @@ public class Tablero {
 	 * @return true si se da la circunstancia
 	 */
 	private boolean compruebaDiagonal() {
-		if (tablero[0][0] == tablero[1][1] && tablero[1][1] == tablero[2][2])
+		if (this.tablero[0][0] == this.tablero[1][1] && this.tablero[1][1] == this.tablero[2][2])
 			return true;
-		if (tablero[0][2] == tablero[1][1] && tablero[1][1] == tablero[2][0])
+		if (this.tablero[0][2] == this.tablero[1][1] && this.tablero[1][1] == this.tablero[2][0])
 			return true;
 		return false;
 	}
@@ -56,10 +56,31 @@ public class Tablero {
 	 * 
 	 * @return true si se han conseguida tres en raya
 	 */
-	public boolean comprobarTresEnRaya() {
-		if (compruebaFila() || compruebaColumna() || compruebaDiagonal())
-			return true;
-		return false;
+	public int[] comprobarVictoria (int turno) {
+		int i;
+		int j;
+		for (i = 0; i < 3; i++) {
+			int[] cont = new int[4];
+			int k=2;
+			if(this.tablero[i][i]==turno) {
+				for(j=0; j<3; j++) {
+					if(this.tablero[i][j]==turno) cont[0]++;
+					if(this.tablero[j][i]==turno) cont[1]++;
+					if(i==1) {
+						if(this.tablero[j][j]==turno) cont[2]++;
+						if(this.tablero[j][k]==turno) cont[3]++;
+					}
+					k--;
+				}
+			}
+			for(j=0; j<4; j++) {
+				if(cont[j]==3) {
+					int[] victoria = {i,j};
+					return victoria;
+				}
+			}
+		}
+		return null;
 	}
 	
 	/**
@@ -97,5 +118,15 @@ public class Tablero {
 					if (getValorPosicion(new Coordenada(x, y))  == 0)
 						return true;
 		return false;
+	}
+	
+	public void showGame() {
+		for (int i = 0; i < tablero.length; i++) {
+			for (int j = 0; j < tablero.length; j++) {
+				System.out.print(this.tablero[i][j] + "|");
+			}
+			System.out.println();
+		}
+		System.out.println();
 	}
 }

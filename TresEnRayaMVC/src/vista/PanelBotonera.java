@@ -21,6 +21,10 @@ public class PanelBotonera extends JPanel {
 	public MyButton getBoton(int i, int j) {
 		return botonera[i][j];
 	}
+	
+	public void setVictoria(int[] result) {
+
+	}
 
 	
 }

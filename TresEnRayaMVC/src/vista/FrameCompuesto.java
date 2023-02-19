@@ -45,7 +45,6 @@ public class FrameCompuesto extends JFrame {
 		panel.setBounds(0, 37, 434, 224);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(3, 3, 0, 0));
-		panel.getBoton(1,1).setText("X");
 	}
 
 	protected PanelBotonera getPanel() {
