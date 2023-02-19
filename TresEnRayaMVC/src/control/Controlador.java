@@ -1,5 +1,7 @@
 package control;
 
+import java.awt.Color;
+
 import modelo.GestionDatos;
 import modelo.Tablero;
 import vista.Coordenada;
@@ -8,6 +10,12 @@ import vista.PanelBotonera;
 
 public class Controlador {
 	private GestionDatos gestion = new GestionDatos();
+	private PanelBotonera botonera;
+	
+	public Controlador(PanelBotonera botonera) {
+		super();
+		this.botonera=botonera;
+	}
 	
 	public void buttonPressed(MyButton button) {
 		MyButton[] buttonsToChange = gestion.proceso(button);
@@ -26,7 +34,10 @@ public class Controlador {
 		Coordenada[] victoryLine = gestion.victoria();
 		if(victoryLine[0]!=null) {
 			System.out.println("victoria");
-			//PanelBotonera.setVictoria(result);		Acceder al objeto no a la clase
+			Color victoryColor = new Color(200,255,200);
+			for (int i = 0; i < victoryLine.length; i++) {
+				botonera.getBoton(victoryLine[i].getX(),victoryLine[i].getY()).setBackground(victoryColor);
+			}
 		}
 	}
 	

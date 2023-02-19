@@ -11,7 +11,7 @@ import vista.FrameCompuesto;
 import vista.MyButton;
 
 public class ParaFrameCompuesto extends FrameCompuesto {
-	private Controlador control = new Controlador();
+	private Controlador control = new Controlador(panel);
 	private ActionListener actionListener;
 	private MouseListener hover;
 	private MouseListener noHover;
@@ -45,25 +45,21 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 	}
 	
 	private void addActionListener() {
-	Component component[][]=new Component[3][3];
-	for (int i = 0; i < component.length; i++) {
-		for (int j = 0; j < component[0].length; j++) {
-			component[i][j]=(Component)this.panel.getBoton(i, j);
-			
-			((MyButton) component[i][j]).addActionListener(this.actionListener);
-			
-			((MyButton) component[i][j]).addMouseListener(this.hover);
-			
-			((MyButton) component[i][j]).addMouseListener(this.noHover);
-			
+		Component component[][]=new Component[3][3];
+		for (int i = 0; i < component.length; i++) {
+			for (int j = 0; j < component[0].length; j++) {
+				component[i][j]=(Component)this.panel.getBoton(i, j);
+				
+				((MyButton) component[i][j]).addActionListener(this.actionListener);
+				
+				((MyButton) component[i][j]).addMouseListener(this.hover);
+				
+				((MyButton) component[i][j]).addMouseListener(this.noHover);
+				
+			}
 		}
 	}
-		
-		
-	}
 	
-
-		
-
-
+	
+	
 }

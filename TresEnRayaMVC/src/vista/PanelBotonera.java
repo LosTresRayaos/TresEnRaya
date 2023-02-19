@@ -2,7 +2,6 @@ package vista;
 
 import javax.swing.JPanel;
 
-
 public class PanelBotonera extends JPanel {
 	private MyButton botonera[][]=new MyButton[3][3];
 	
@@ -21,10 +20,12 @@ public class PanelBotonera extends JPanel {
 	public MyButton getBoton(int i, int j) {
 		return botonera[i][j];
 	}
-	
-	public void setVictoria(int[] result) {
 
+	public MyButton[][] getBotonera() {
+		return botonera;
 	}
+	
+	
 
 	
 }
