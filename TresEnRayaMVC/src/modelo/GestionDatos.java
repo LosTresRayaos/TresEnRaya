@@ -5,8 +5,8 @@ import vista.Coordenada;
 public class GestionDatos {
 	private Tablero tablero = new Tablero();
 	private int numerojugada = 0;  
-	private int turno;
-	private Coordenada[] coordenadasGuardadas;
+	private int turno=2;
+	private Coordenada[] coordenadasGuardadas = {null, null};
 
 	public int getTurno() {
 		return turno;
@@ -16,10 +16,10 @@ public class GestionDatos {
 			this.coordenadasGuardadas = new Coordenada[2];
 			int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
 			if(value==0) {
-				this.turno = calculaTurno();
+				this.coordenadasGuardadas[0]=lastCoordenada;
+				return this.coordenadasGuardadas;
 			}
-			this.coordenadasGuardadas[0]=lastCoordenada;
-			return this.coordenadasGuardadas;
+
 		}
 		if(numerojugada>=6) {
 			this.coordenadasGuardadas[0]=null;
@@ -27,29 +27,31 @@ public class GestionDatos {
 				int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
 				if(value==this.turno && tablero.comprobarBloqueada(lastCoordenada)) {
 					this.coordenadasGuardadas[1]=lastCoordenada;
-					return coordenadasGuardadas;
+					return this.coordenadasGuardadas;
 				}
 			}
 			else {
-				int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
+				int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];	//TODO Falta controlar que sea contigua
 				if(value==0) {
-					
+					this.coordenadasGuardadas[0]=lastCoordenada;
+					Coordenada[] auxiliar = coordenadasGuardadas;
+					coordenadasGuardadas = new Coordenada[2];
+					return auxiliar;
 				}
 			}
 			
 		}
-		return null;
+		Coordenada[] nula = {null,null};
+		return nula;
 		
 	}
 	
-	public int calculaTurno() {
-		if (numerojugada % 2 == 0) {
-			this.numerojugada++;
-			return 2;
-		}
-		this.numerojugada++;
-		return 1;
+	public void aumentaJugada() {
+		numerojugada++;
+		if(numerojugada%2==0) this.turno=2;
+		else this.turno=1;
 	}
+	
 	public void update(Coordenada[] coordenada) {
 		tablero.tablero[coordenada[0].getX()][coordenada[0].getY()]=this.turno;
 		tablero.tablero[coordenada[1].getX()][coordenada[1].getY()]=0;

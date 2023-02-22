@@ -15,6 +15,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JProgressBar;
 
 public class FrameCompuesto extends JFrame {
 
@@ -36,13 +37,13 @@ public class FrameCompuesto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(194, 10, 61, 16);
+		JLabel lblNewLabel = new JLabel("TIC TAC TOE");
+		lblNewLabel.setBounds(194, 10, 72, 16);
 		contentPane.add(lblNewLabel);
 		
 		panel = new PanelBotonera();
 
-		panel.setBounds(0, 37, 434, 224);
+		panel.setBounds(0, 76, 434, 185);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(3, 3, 0, 0));
 	}
