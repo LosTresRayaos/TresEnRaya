@@ -31,6 +31,15 @@ public class GestionDatos {
 		this.numerojugada++;
 		return 1;
 	}
+	public void update(MyButton[] button) {
+		int x = button[0].getCoordenada().getX();
+		int y = button[0].getCoordenada().getY();
+		tablero.tablero[x][y]=this.turno;
+		x=button[1].getCoordenada().getX();
+		y=button[1].getCoordenada().getY();
+		tablero.tablero[x][y]=0;
+		tablero.showGame();
+	}
 	
 	public void update(MyButton button) {
 		int x = button.getCoordenada().getX();
