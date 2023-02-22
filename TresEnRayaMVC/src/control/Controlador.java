@@ -3,7 +3,6 @@ package control;
 import java.awt.Color;
 
 import modelo.GestionDatos;
-import modelo.Tablero;
 import vista.Coordenada;
 import vista.MyButton;
 import vista.PanelBotonera;
@@ -49,7 +48,7 @@ public class Controlador {
 	public void makeChange(Coordenada coordenada) {
 		gestion.update(coordenada);
 		if(gestion.getTurno()==1) {
-			botonera.getBoton(coordenada.getX(), coordenada.getY()).setText("O");;
+			botonera.getBoton(coordenada.getX(), coordenada.getY()).setText("O");
 		}
 		if(gestion.getTurno()==2) {
 			botonera.getBoton(coordenada.getX(), coordenada.getY()).setText("X");;

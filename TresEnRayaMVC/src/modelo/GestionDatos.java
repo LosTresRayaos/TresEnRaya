@@ -6,18 +6,37 @@ public class GestionDatos {
 	private Tablero tablero = new Tablero();
 	private int numerojugada = 0;  
 	private int turno;
+	private Coordenada[] coordenadasGuardadas;
 
 	public int getTurno() {
 		return turno;
 	}
 	public Coordenada[] proceso(Coordenada lastCoordenada) {
 		if(numerojugada<6) {
+			this.coordenadasGuardadas = new Coordenada[2];
 			int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
 			if(value==0) {
 				this.turno = calculaTurno();
 			}
-			Coordenada[] arrayCoordenadas = {lastCoordenada,null};
-			return arrayCoordenadas;
+			this.coordenadasGuardadas[0]=lastCoordenada;
+			return this.coordenadasGuardadas;
+		}
+		if(numerojugada>=6) {
+			this.coordenadasGuardadas[0]=null;
+			if(this.coordenadasGuardadas[1]==null) {
+				int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
+				if(value==this.turno && tablero.comprobarBloqueada(lastCoordenada)) {
+					this.coordenadasGuardadas[1]=lastCoordenada;
+					return coordenadasGuardadas;
+				}
+			}
+			else {
+				int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
+				if(value==0) {
+					
+				}
+			}
+			
 		}
 		return null;
 		

@@ -120,6 +120,11 @@ public class Tablero {
 		return false;
 	}
 	
+	public boolean comprobarContigua(Coordenada lastCoordenada, Coordenada first) {
+		
+		
+		return false;
+	}
 	public void showGame() {
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero.length; j++) {
