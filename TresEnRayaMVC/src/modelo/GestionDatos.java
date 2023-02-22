@@ -1,7 +1,6 @@
 package modelo;
 
 import vista.Coordenada;
-import vista.MyButton;
 
 public class GestionDatos {
 	private Tablero tablero = new Tablero();
@@ -11,13 +10,14 @@ public class GestionDatos {
 	public int getTurno() {
 		return turno;
 	}
-	public MyButton[] proceso(MyButton lastButton) {
+	public Coordenada[] proceso(Coordenada lastCoordenada) {
 		if(numerojugada<6) {
-			if(lastButton.getText().equals("")) {
+			int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
+			if(value==0) {
 				this.turno = calculaTurno();
 			}
-			MyButton[] buttons = {lastButton,null};
-			return buttons;
+			Coordenada[] arrayCoordenadas = {lastCoordenada,null};
+			return arrayCoordenadas;
 		}
 		return null;
 		
@@ -31,20 +31,14 @@ public class GestionDatos {
 		this.numerojugada++;
 		return 1;
 	}
-	public void update(MyButton[] button) {
-		int x = button[0].getCoordenada().getX();
-		int y = button[0].getCoordenada().getY();
-		tablero.tablero[x][y]=this.turno;
-		x=button[1].getCoordenada().getX();
-		y=button[1].getCoordenada().getY();
-		tablero.tablero[x][y]=0;
+	public void update(Coordenada[] coordenada) {
+		tablero.tablero[coordenada[0].getX()][coordenada[0].getY()]=this.turno;
+		tablero.tablero[coordenada[1].getX()][coordenada[1].getY()]=0;
 		tablero.showGame();
 	}
 	
-	public void update(MyButton button) {
-		int x = button.getCoordenada().getX();
-		int y = button.getCoordenada().getY();
-		tablero.tablero[x][y]=this.turno;
+	public void update(Coordenada coordenada) {
+		tablero.tablero[coordenada.getX()][coordenada.getY()]=this.turno;
 		tablero.showGame();
 		
 	}
