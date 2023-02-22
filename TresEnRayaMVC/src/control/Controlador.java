@@ -18,13 +18,13 @@ public class Controlador {
 	}
 	
 	public void buttonPressed(MyButton button) {
-		MyButton[] buttonsToChange = gestion.proceso(button);
-		if(buttonsToChange[0] != null && buttonsToChange[1] != null) {
-			makeChange(buttonsToChange);
+		Coordenada[] coordenadasToChange = gestion.proceso(button.getCoordenada());
+		if(coordenadasToChange[0] != null && coordenadasToChange[1] != null) {
+			makeChange(coordenadasToChange);
 			searchVictory();
 		}
-		else if(buttonsToChange[0] != null) {
-			makeChange(buttonsToChange[0]);
+		else if(coordenadasToChange[0] != null) {
+			makeChange(coordenadasToChange[0]);
 			searchVictory();
 		}
 
@@ -41,18 +41,18 @@ public class Controlador {
 		}
 	}
 	
-	public void makeChange(MyButton[] buttonsToChange) {
+	public void makeChange(Coordenada[] coordenadasToChange) {
 		//gestion.update(buttonsToChange);
 		
 	}
 	
-	public void makeChange(MyButton buttonToChange) {
-		gestion.update(buttonToChange);
+	public void makeChange(Coordenada coordenada) {
+		gestion.update(coordenada);
 		if(gestion.getTurno()==1) {
-			buttonToChange.setText("O");
+			botonera.getBoton(coordenada.getX(), coordenada.getY()).setText("O");;
 		}
 		if(gestion.getTurno()==2) {
-			buttonToChange.setText("X");
+			botonera.getBoton(coordenada.getX(), coordenada.getY()).setText("X");;
 		}
 	}
 
