@@ -36,7 +36,7 @@ public class GestionDatos {
 		int y = button[0].getCoordenada().getY();
 		tablero.tablero[x][y]=this.turno;
 		x=button[1].getCoordenada().getX();
-		y=button[0].getCoordenada().getY();
+		y=button[1].getCoordenada().getY();
 		tablero.tablero[x][y]=0;
 		tablero.showGame();
 	}
