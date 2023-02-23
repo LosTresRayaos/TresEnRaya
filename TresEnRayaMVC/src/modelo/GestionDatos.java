@@ -85,4 +85,7 @@ public class GestionDatos {
 	public Tablero getTablero() {
 		return tablero;
 	}
+	public int getNumerojugada() {
+		return numerojugada;
+	}
 }

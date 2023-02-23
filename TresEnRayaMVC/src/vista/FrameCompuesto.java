@@ -22,13 +22,9 @@ public class FrameCompuesto extends JFrame{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("TIC TAC TOE");
-		lblNewLabel.setBounds(194, 10, 72, 16);
-		contentPane.add(lblNewLabel);
-		
 		panel = new PanelBotonera();
 
-		panel.setBounds(0, 37, 434, 224);
+		panel.setBounds(0, 0, 434, 261);
 		contentPane.add(panel);
 		panel.setLayout(new GridLayout(3, 3, 0, 0));
 	}

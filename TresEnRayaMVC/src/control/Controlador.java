@@ -42,8 +42,10 @@ public class Controlador {
 		
 		if(cambioRealizado) {
 			gestion.aumentaJugada();
-			if(gestion.getTurno()==1) botonera.setForegroundButton("X");
-			else botonera.setForegroundButton("O");
+			if(gestion.getNumerojugada()>=6) {
+				if(gestion.getTurno()==1) botonera.setForegroundButton("X");
+				else botonera.setForegroundButton("O");
+			}
 		}
 
 		return respuesta;
