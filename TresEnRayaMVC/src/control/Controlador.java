@@ -23,13 +23,11 @@ public class Controlador {
 		boolean cambioRealizado=false;
 		if(coordenadasToChange[0] != null && coordenadasToChange[1] != null) {
 			makeChange(coordenadasToChange);
-			respuesta[2]=true;
 			respuesta[0] = searchVictory();
 			cambioRealizado=true;
 		}
 		else if(coordenadasToChange[0] != null) {
 			makeChange(coordenadasToChange[0]);
-			respuesta[2]=true;
 			respuesta[0] = searchVictory();
 			cambioRealizado=true;
 		}

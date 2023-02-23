@@ -16,8 +16,7 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 	private MouseListener noHover;
 	private boolean victoria=false;
 	private boolean seleccionada=false;
-	private boolean cambioHecho=false;
-	private boolean[] respuesta = {victoria,seleccionada,cambioHecho};
+	private boolean[] respuesta = {victoria,seleccionada};
 	private MyButton anterior;
 	
 	public ParaFrameCompuesto() {
@@ -35,9 +34,8 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 					respuesta=control.buttonPressed((MyButton)e.getSource());
 					victoria=respuesta[0];
 					seleccionada=respuesta[1];
-					cambioHecho=respuesta[2];
 					
-					if(anterior != null && cambioHecho) {
+					if(anterior != null) {
 						reAddHover(anterior);
 					}
 					
@@ -45,7 +43,6 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 				if(seleccionada) {
 					removeHover((MyButton)e.getSource());
 					((MyButton)e.getSource()).setBackgroundToHover();
-					System.out.println("entra");
 					anterior=(MyButton)e.getSource();
 				}
 				if(victoria) {
@@ -81,9 +78,7 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 				
 				((MyButton) component[i][j]).addActionListener(this.actionListener);
 				
-				((MyButton) component[i][j]).addMouseListener(this.hover);
-				
-				((MyButton) component[i][j]).addMouseListener(this.noHover);
+				reAddHover(((MyButton) component[i][j]));
 			}
 		}
 	}

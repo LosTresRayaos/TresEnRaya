@@ -21,21 +21,16 @@ public class GestionDatos {
 		}
 		if(numerojugada>=6) {
 			this.coordenadasGuardadas[0]=null;
-			if(this.coordenadasGuardadas[1]==null) {
-				int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
+			int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
 				if(value==this.turno && tablero.comprobarBloqueada(lastCoordenada)) {
 					this.coordenadasGuardadas[1]=lastCoordenada;
 					return this.coordenadasGuardadas;
 				}
-			}
-			else {
-				int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
-				if(value==0 && lastCoordenada.casillaContigua(coordenadasGuardadas[1])) {
-					this.coordenadasGuardadas[0]=lastCoordenada;
-					Coordenada[] auxiliar = coordenadasGuardadas;
-					coordenadasGuardadas = new Coordenada[2];
-					return auxiliar;
-				}
+			else if(value==0 && coordenadasGuardadas[1]!=null && lastCoordenada.casillaContigua(coordenadasGuardadas[1])) { 
+				this.coordenadasGuardadas[0]=lastCoordenada;
+				Coordenada[] auxiliar = coordenadasGuardadas;
+				coordenadasGuardadas = new Coordenada[2];
+				return auxiliar;
 			}
 			
 		}
