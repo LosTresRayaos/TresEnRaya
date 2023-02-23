@@ -1,11 +1,16 @@
 package vista;
 
+import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JPanel;
 
 import modelo.Coordenada;
 
 public class PanelBotonera extends JPanel {
 	private MyButton botonera[][]=new MyButton[3][3];
+	private Color turnColor = new Color(190,100,150);
+	private Color black = new Color(0,0,0);
 	
 	public PanelBotonera() {
 		crearBotones();
@@ -25,6 +30,16 @@ public class PanelBotonera extends JPanel {
 
 	public MyButton[][] getBotonera() {
 		return botonera;
+	}
+	
+	public void setForegroundButton(String turno) {
+		MyButton button = new MyButton(null);
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if(this.botonera[i][j].getText().equals(turno)) this.botonera[i][j].setForeground(turnColor);
+				else this.botonera[i][j].setForeground(black);
+			}
+		}
 	}
 	
 	

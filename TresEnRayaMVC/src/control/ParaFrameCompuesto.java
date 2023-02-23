@@ -15,9 +15,11 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 	private MouseListener hover;
 	private MouseListener noHover;
 	private boolean victoria=false;
-	private boolean seleccionada=false;
-	private boolean[] respuesta = {victoria,seleccionada};
-	private MyButton anterior;
+	private boolean seleccionado=false;
+	private boolean cambioHecho=false;
+	private boolean[] respuesta = {victoria,seleccionado,cambioHecho};
+	private MyButton botonSeleccionado;
+	private MyButton botonActual;
 	
 	public ParaFrameCompuesto() {
 		super();
@@ -29,33 +31,38 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 		actionListener = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				botonActual = (MyButton)e.getSource();
 				if(!victoria) {
 					respuesta=control.buttonPressed((MyButton)e.getSource());
 					victoria=respuesta[0];
-					seleccionada=respuesta[1];
-					
-					if(anterior != null) {
-						reAddHover(anterior);
+					seleccionado=respuesta[1];
+					cambioHecho=respuesta[2];
+					if(seleccionado) {
+						
+						if(botonSeleccionado != null) addHover(botonSeleccionado);
+						removeHover(botonActual);
+						botonActual.setBackgroundToHoverColor();
+						botonSeleccionado=botonActual;
 					}
 					
+					if(cambioHecho && botonSeleccionado!=null) {
+						addHover(botonSeleccionado);
+						botonSeleccionado=null;
+					}
 				}
-				if(seleccionada) {
-					removeHover((MyButton)e.getSource());
-					((MyButton)e.getSource()).setBackgroundToHover();
-					anterior=(MyButton)e.getSource();
-				}
+
+
 				if(victoria) {
+					
 					//TODO set linea victoria AQUI
 				}
-				
 			}
 		};
 		hover = (new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) {
 				if(!victoria) {
-					((MyButton)e.getSource()).setBackgroundToHover();
+					((MyButton)e.getSource()).setBackgroundToHoverColor();
 				}
 			}
 		});
@@ -64,7 +71,7 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 			@Override
 			public void mouseExited(MouseEvent e) {
 				if(!victoria) {
-					((MyButton)e.getSource()).setBackgroundToBase();
+					((MyButton)e.getSource()).setBackgroundToBaseColor();
 				}
 			}
 		});
@@ -76,9 +83,9 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 			for (int j = 0; j < component[0].length; j++) {
 				component[i][j]=(Component)this.panel.getBoton(i, j);
 				
-				((MyButton) component[i][j]).addActionListener(this.actionListener);
+				((MyButton)component[i][j]).addActionListener(this.actionListener);
 				
-				reAddHover(((MyButton) component[i][j]));
+				addHover(((MyButton) component[i][j]));
 			}
 		}
 	}
@@ -88,9 +95,9 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 		buttonSelected.removeMouseListener(this.noHover);
 	}
 	
-	public void reAddHover(MyButton buttonSelected) {
+	public void addHover(MyButton buttonSelected) {
 		buttonSelected.addMouseListener(this.hover);
 		buttonSelected.addMouseListener(this.noHover);
-		buttonSelected.setBackgroundToBase();
+		buttonSelected.setBackgroundToBaseColor();
 	}
 }

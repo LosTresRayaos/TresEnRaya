@@ -7,7 +7,7 @@ import modelo.Coordenada;
 
 public class MyButton extends JButton {
 	private Coordenada coordenada;
-	private Color baseColor = new Color(220,240,255); //Avoid values below 50
+	private Color baseColor = new Color(230,245,255); //Avoid values below 50
 	private Color hoverColor;
 
 	public MyButton(Coordenada coordenada) {
@@ -21,11 +21,11 @@ public class MyButton extends JButton {
 		return coordenada;
 	}
 	
-	public void setBackgroundToBase() {
+	public void setBackgroundToBaseColor() {
 		setBackground(baseColor);
 	}
 	
-	public void setBackgroundToHover() {
+	public void setBackgroundToHoverColor() {
 		setBackground(hoverColor);
 	}
 	

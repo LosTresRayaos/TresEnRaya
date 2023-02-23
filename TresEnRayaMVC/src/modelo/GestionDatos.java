@@ -22,10 +22,10 @@ public class GestionDatos {
 		if(numerojugada>=6) {
 			this.coordenadasGuardadas[0]=null;
 			int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
-				if(value==this.turno && tablero.comprobarBloqueada(lastCoordenada)) {
-					this.coordenadasGuardadas[1]=lastCoordenada;
-					return this.coordenadasGuardadas;
-				}
+			if(value==this.turno && tablero.comprobarBloqueada(lastCoordenada)) {
+				this.coordenadasGuardadas[1]=lastCoordenada;
+				return this.coordenadasGuardadas;
+			}
 			else if(value==0 && coordenadasGuardadas[1]!=null && lastCoordenada.casillaContigua(coordenadasGuardadas[1])) { 
 				this.coordenadasGuardadas[0]=lastCoordenada;
 				Coordenada[] auxiliar = coordenadasGuardadas;
@@ -81,5 +81,8 @@ public class GestionDatos {
 			}
 		}
 		return coordenadaVictoria;
+	}
+	public Tablero getTablero() {
+		return tablero;
 	}
 }
