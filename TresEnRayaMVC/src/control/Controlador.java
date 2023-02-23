@@ -16,35 +16,39 @@ public class Controlador {
 		this.botonera=botonera;
 	}
 	
-	public void buttonPressed(MyButton button) {
+	//TODO poder cambiar ficha a cambiar	
+	public boolean buttonPressed(MyButton button) {
 		Coordenada[] coordenadasToChange = gestion.proceso(button.getCoordenada());
+		boolean victoria=false;
 		boolean cambioRealizado=false;
 		if(coordenadasToChange[0] != null && coordenadasToChange[1] != null) {
 			makeChange(coordenadasToChange);
-			searchVictory();
+			victoria = searchVictory();
 			cambioRealizado=true;
 		}
 		else if(coordenadasToChange[0] != null) {
 			makeChange(coordenadasToChange[0]);
-			searchVictory();
+			victoria = searchVictory();
 			cambioRealizado=true;
 		}
 		
 		if(cambioRealizado) gestion.aumentaJugada();
+		return victoria;
 		
 		
 
 	}
 	
-	public void searchVictory() {
+	public boolean searchVictory() {
 		Coordenada[] victoryLine = gestion.victoria();
 		if(victoryLine[0]!=null) {
-			System.out.println("victoria");
-			Color victoryColor = new Color(200,255,200);
+			Color victoryColor = new Color(167,255,255);
 			for (int i = 0; i < victoryLine.length; i++) {
 				botonera.getBoton(victoryLine[i].getX(),victoryLine[i].getY()).setBackground(victoryColor);
 			}
+			return true;
 		}
+		return false;
 	}
 	
 	public void makeChange(Coordenada[] coordenada) {

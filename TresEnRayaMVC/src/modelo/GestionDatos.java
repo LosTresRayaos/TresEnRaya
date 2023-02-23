@@ -31,8 +31,8 @@ public class GestionDatos {
 				}
 			}
 			else {
-				int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];	//TODO Falta controlar que sea contigua
-				if(value==0) {
+				int value=tablero.tablero[lastCoordenada.getX()][lastCoordenada.getY()];
+				if(value==0 && lastCoordenada.casillaContigua(coordenadasGuardadas[1])) {
 					this.coordenadasGuardadas[0]=lastCoordenada;
 					Coordenada[] auxiliar = coordenadasGuardadas;
 					coordenadasGuardadas = new Coordenada[2];
@@ -55,12 +55,10 @@ public class GestionDatos {
 	public void update(Coordenada[] coordenada) {
 		tablero.tablero[coordenada[0].getX()][coordenada[0].getY()]=this.turno;
 		tablero.tablero[coordenada[1].getX()][coordenada[1].getY()]=0;
-		tablero.showGame();
 	}
 	
 	public void update(Coordenada coordenada) {
 		tablero.tablero[coordenada.getX()][coordenada.getY()]=this.turno;
-		tablero.showGame();
 		
 	}
 	

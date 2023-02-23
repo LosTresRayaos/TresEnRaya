@@ -13,43 +13,6 @@ public class Tablero {
 		this.tablero[coordenada.getX()][coordenada.getY()]=i;
 		
 	}
-	/**
-	 * Mirar las filas del tablero
-	 * 
-	 * @return true si hay tres fichas de la misma clase en una fila
-	 */
-	private boolean compruebaFila() {
-		for (int x = 0; x < 3; x++)
-			if (this.tablero[x][0] == this.tablero[x][1] && this.tablero[x][1] == this.tablero[x][2] && this.tablero[x][1] != 0)
-				return true;
-		return false;
-	}
-	
-	/**
-	 * Mira las columnas del tablero
-	 * 
-	 * @return true si tres fichas de la misma clase en una columna
-	 */
-	private boolean compruebaColumna() {
-		for (int y = 0; y < 3; y++)
-			if (this.tablero[0][y] == this.tablero[1][y] && this.tablero[1][y] == this.tablero[2][y] && this.tablero[1][y] != 0)
-				return true;
-		return false;
-	}
-
-	/**
-	 * Comprueba si alguna diagonal tiene tres en raya No hace falta comparar si
-	 * est�n vacias, no puede ocurrir
-	 * 
-	 * @return true si se da la circunstancia
-	 */
-	private boolean compruebaDiagonal() {
-		if (this.tablero[0][0] == this.tablero[1][1] && this.tablero[1][1] == this.tablero[2][2])
-			return true;
-		if (this.tablero[0][2] == this.tablero[1][1] && this.tablero[1][1] == this.tablero[2][0])
-			return true;
-		return false;
-	}
 
 	/**
 	 * Se encarga de llamar a los metodos que comprueban las tres en raya
@@ -124,14 +87,5 @@ public class Tablero {
 		
 		
 		return false;
-	}
-	public void showGame() {
-		for (int i = 0; i < tablero.length; i++) {
-			for (int j = 0; j < tablero.length; j++) {
-				System.out.print(this.tablero[i][j] + "|");
-			}
-			System.out.println();
-		}
-		System.out.println();
 	}
 }

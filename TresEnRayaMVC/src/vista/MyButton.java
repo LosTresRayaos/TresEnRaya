@@ -1,8 +1,6 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.Font;
-
 import javax.swing.JButton;
 
 public class MyButton extends JButton {
