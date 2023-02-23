@@ -2,6 +2,8 @@ package vista;
 
 import javax.swing.JPanel;
 
+import modelo.Coordenada;
+
 public class PanelBotonera extends JPanel {
 	private MyButton botonera[][]=new MyButton[3][3];
 	

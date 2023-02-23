@@ -2,8 +2,8 @@ package control;
 
 import java.awt.Color;
 
+import modelo.Coordenada;
 import modelo.GestionDatos;
-import vista.Coordenada;
 import vista.MyButton;
 import vista.PanelBotonera;
 

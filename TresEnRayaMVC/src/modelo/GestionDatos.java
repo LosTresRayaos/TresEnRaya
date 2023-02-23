@@ -1,7 +1,5 @@
 package modelo;
 
-import vista.Coordenada;
-
 public class GestionDatos {
 	private Tablero tablero = new Tablero();
 	private int numerojugada = 0;  

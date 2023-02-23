@@ -1,7 +1,5 @@
 package modelo;
 
-import vista.Coordenada;
-
 public class Tablero {
 	public int tablero[][] = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 } };
 
@@ -11,7 +9,6 @@ public class Tablero {
 
 	public void setValorPosicion(Coordenada coordenada, int i) {
 		this.tablero[coordenada.getX()][coordenada.getY()]=i;
-		
 	}
 
 	/**
