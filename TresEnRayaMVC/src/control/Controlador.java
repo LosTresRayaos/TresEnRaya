@@ -17,23 +17,28 @@ public class Controlador {
 	}
 	
 	//TODO poder cambiar ficha a cambiar	
-	public boolean buttonPressed(MyButton button) {
+	public boolean[] buttonPressed(MyButton button) {
 		Coordenada[] coordenadasToChange = gestion.proceso(button.getCoordenada());
-		boolean victoria=false;
+		boolean[] respuesta = {false,false,false};
 		boolean cambioRealizado=false;
 		if(coordenadasToChange[0] != null && coordenadasToChange[1] != null) {
 			makeChange(coordenadasToChange);
-			victoria = searchVictory();
+			respuesta[2]=true;
+			respuesta[0] = searchVictory();
 			cambioRealizado=true;
 		}
 		else if(coordenadasToChange[0] != null) {
 			makeChange(coordenadasToChange[0]);
-			victoria = searchVictory();
+			respuesta[2]=true;
+			respuesta[0] = searchVictory();
 			cambioRealizado=true;
+		}
+		else if(coordenadasToChange[0] == null && coordenadasToChange[1] != null) {
+			respuesta[1]=true;
 		}
 		
 		if(cambioRealizado) gestion.aumentaJugada();
-		return victoria;
+		return respuesta;
 		
 		
 
