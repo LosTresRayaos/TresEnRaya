@@ -39,11 +39,14 @@ public class Controlador {
 		if(cambioRealizado) {
 			gestion.aumentaJugada();
 			cambiarColorLetraPorTurno();
+
 		}
 
 		return respuesta;
 	}
 	
+
+
 	private void cambiarColorLetraPorTurno() {
 		if(gestion.getNumerojugada()>=6) {
 			if(gestion.getTurno()==1) botonera.setForegroundButton("X");

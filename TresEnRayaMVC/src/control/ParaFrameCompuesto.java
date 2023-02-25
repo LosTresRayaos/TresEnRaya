@@ -3,6 +3,9 @@ package control;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
@@ -11,20 +14,23 @@ import java.awt.event.MouseListener;
 import vista.FrameCompuesto;
 import vista.MyButton;
 
-public class ParaFrameCompuesto extends FrameCompuesto {
+public class ParaFrameCompuesto extends FrameCompuesto{
 	private Controlador control = new Controlador(botonera);
 	private ActionListener actionListener;
 	private MouseListener hover;
 	private MouseListener noHover;
+	private KeyListener cPressed;
 	private boolean victoria=false;
 	private boolean seleccionado=false;
 	private boolean cambioHecho=false;
 	private boolean[] respuesta = {victoria,seleccionado,cambioHecho};
 	private MyButton botonSeleccionado;
 	private MyButton botonActual;
+	private ComponentAdapter windowReSized;
 	
 	public ParaFrameCompuesto() {
 		super();
+		setFocusable(true);
 		createEvents();
 		addEvents();
 	}
@@ -71,6 +77,39 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 				botonera.setBackgroundToBaseColor(((MyButton)e.getSource()));
 			}
 		});
+		windowReSized = (new ComponentAdapter() {
+			@Override
+            public void componentResized(ComponentEvent e) {
+            	int width = ((Component)e.getSource()).getWidth();
+            	int height = ((Component)e.getSource()).getHeight();
+            	if(width<height) {
+            		botonera.changeDimension(width);
+            	}
+            	else {
+            		botonera.changeDimension(height);
+            	}
+            }
+        });
+		cPressed = (new KeyListener() {
+			public void keyPressed(KeyEvent e) {
+                char letra = e.getKeyChar();
+                if(letra=='c') botonera.changeColor();
+            }
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+
+		
 
 	}
 	
@@ -82,9 +121,13 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 				
 				((MyButton)component[i][j]).addActionListener(this.actionListener);
 				
+				
 				addHover(((MyButton) component[i][j]));
 			}
 		}
+		((MyButton)component[0][0]).addComponentListener(windowReSized);
+		
+		addKeyListener(cPressed);
 	}
 	
 	private void removeEvents() {
@@ -99,6 +142,7 @@ public class ParaFrameCompuesto extends FrameCompuesto {
 			}
 		}
 	}
+	
 	
 	public void removeHover(MyButton buttonSelected) {
 		buttonSelected.removeMouseListener(this.hover);

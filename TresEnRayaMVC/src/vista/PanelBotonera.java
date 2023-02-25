@@ -1,21 +1,19 @@
 package vista;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
-
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-
 import modelo.Coordenada;
 
 public class PanelBotonera extends JPanel {
 	private MyButton botonera[][]=new MyButton[3][3];
 	private Color black = new Color(0,0,0);
 	private Color blockedColor = new Color(150,150,150);
-	private Color victoryColor = new Color(230,255,240);
-	private Font baseFont = new Font("Arial", Font.PLAIN, 25);
-	private Color baseColor = new Color(255,255,255); //Avoid values below 50
+	private Font baseFont;
+	private Color[] baseColor = {new Color(255,255,255), new Color(230,255,255), new Color(255,190,130), new Color(255,225,255), new Color(200,200,255)}; //Avoid values below 50
 	private Color hoverColor;
+	private int posColor=0;
 
 	
 	public PanelBotonera() {
@@ -28,10 +26,17 @@ public class PanelBotonera extends JPanel {
 				botonera[i][j] = new MyButton(new Coordenada(i, j));
 				botonera[i][j].setFont(baseFont);
 				this.add(botonera[i][j] );
-				setBackground(baseColor);
-				this.hoverColor = new Color(baseColor.getRed()-50,baseColor.getGreen()-50,baseColor.getBlue()-50);
+				botonera[i][j].setBorder(BorderFactory.createBevelBorder(0));
+				botonera[i][j].setFocusable(false);
+
 			}
 		}
+		setBackground(baseColor[posColor]);
+		hoverColor=getHoverColor(baseColor[posColor]);
+	}
+	
+	public Color getHoverColor(Color base) {
+		return new Color(base.getRed()-50,base.getGreen()-50,base.getBlue()-50);
 	}
 	public MyButton getBoton(int i, int j) {
 		return botonera[i][j];
@@ -60,19 +65,50 @@ public class PanelBotonera extends JPanel {
 	
 	public void victory(Coordenada[] victory) {
 		for (int i = 0; i < victory.length; i++) {
-			getBoton(victory[i]).setBackground(victoryColor);
+			getBoton(victory[i]).setBackground(hoverColor);
 		}
 	}
 	
 	public void setBackgroundToBaseColor(MyButton button) {
-		button.setBackground(baseColor);
+		button.setBackground(baseColor[posColor]);
 	}
 	
 	public void setBackgroundToHoverColor(MyButton button) {
 		button.setBackground(hoverColor);
 	}
 	
+	public void changeDimension(int value) {
+		int scaleFactor = 2;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				this.baseFont=new Font("Helvetica", Font.PLAIN, (value/scaleFactor));
+				this.botonera[i][j].setFont(baseFont);
+			}
+		}
+	}
 	
-
+	public void changeColor() {
+		Color oldBase = baseColor[posColor];
+		Color oldHover = this.hoverColor;
+		if(posColor<this.baseColor.length-1) this.posColor++;
+		else this.posColor=0;
+		
+		this.hoverColor=getHoverColor(baseColor[posColor]);
+		
+		for (int i = 0; i < botonera.length; i++) {
+			for (int j = 0; j < botonera[0].length; j++) {
+				Color buttonColor = botonera[i][j].getBackground();
+				if(buttonColor.equals(oldBase)) {
+					botonera[i][j].setBackground(this.baseColor[posColor]);
+				}
+				else if(buttonColor.equals(oldHover)){
+					botonera[i][j].setBackground(this.hoverColor);
+				}
+			}
+		}
+		
+		
+		
+	}
 	
 }

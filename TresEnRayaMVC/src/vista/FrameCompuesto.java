@@ -6,6 +6,7 @@ import javax.swing.border.EmptyBorder;
 
 import javax.swing.JLabel;
 import java.awt.GridLayout;
+import javax.swing.border.BevelBorder;
 
 public class FrameCompuesto extends JFrame{
 
@@ -23,6 +24,7 @@ public class FrameCompuesto extends JFrame{
 		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
 		botonera = new PanelBotonera();
+		botonera.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		contentPane.add(botonera);
 		botonera.setLayout(new GridLayout(3, 3, 0, 0));
 	}
