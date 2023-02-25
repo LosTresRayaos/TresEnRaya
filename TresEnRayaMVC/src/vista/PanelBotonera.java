@@ -10,8 +10,13 @@ import modelo.Coordenada;
 
 public class PanelBotonera extends JPanel {
 	private MyButton botonera[][]=new MyButton[3][3];
-	private Color turnColor = new Color(210,100,100);
 	private Color black = new Color(0,0,0);
+	private Color blockedColor = new Color(150,150,150);
+	private Color victoryColor = new Color(230,255,240);
+	private Font baseFont = new Font("Arial", Font.PLAIN, 25);
+	private Color baseColor = new Color(255,255,255); //Avoid values below 50
+	private Color hoverColor;
+
 	
 	public PanelBotonera() {
 		crearBotones();
@@ -21,12 +26,19 @@ public class PanelBotonera extends JPanel {
 		for (int i = 0; i < 3; i++) {
 			for (int j= 0; j < 3; j++) {
 				botonera[i][j] = new MyButton(new Coordenada(i, j));
-			this.add(botonera[i][j] );
+				botonera[i][j].setFont(baseFont);
+				this.add(botonera[i][j] );
+				setBackground(baseColor);
+				this.hoverColor = new Color(baseColor.getRed()-50,baseColor.getGreen()-50,baseColor.getBlue()-50);
 			}
 		}
 	}
 	public MyButton getBoton(int i, int j) {
 		return botonera[i][j];
+	}
+	
+	public MyButton getBoton(Coordenada coordenada) {
+		return botonera[coordenada.getX()][coordenada.getY()];
 	}
 
 	public MyButton[][] getBotonera() {
@@ -34,17 +46,30 @@ public class PanelBotonera extends JPanel {
 	}
 	
 	public void setForegroundButton(String turno) {
-		MyButton button = new MyButton(null);
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				if(this.botonera[i][j].getText().equals(turno)) {
-					this.botonera[i][j].setForeground(turnColor);
+					this.botonera[i][j].setForeground(black);
 				}
 				else {
-					this.botonera[i][j].setForeground(black);
+					this.botonera[i][j].setForeground(blockedColor);
 				}
 			}
 		}
+	}
+	
+	public void victory(Coordenada[] victory) {
+		for (int i = 0; i < victory.length; i++) {
+			getBoton(victory[i]).setBackground(victoryColor);
+		}
+	}
+	
+	public void setBackgroundToBaseColor(MyButton button) {
+		button.setBackground(baseColor);
+	}
+	
+	public void setBackgroundToHoverColor(MyButton button) {
+		button.setBackground(hoverColor);
 	}
 	
 	

@@ -10,7 +10,7 @@ import java.awt.GridLayout;
 public class FrameCompuesto extends JFrame{
 
 	private JPanel contentPane;
-	protected PanelBotonera panel;
+	protected PanelBotonera botonera;
 	
 	public FrameCompuesto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,20 +20,18 @@ public class FrameCompuesto extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		panel = new PanelBotonera();
-
-		panel.setBounds(0, 0, 434, 261);
-		contentPane.add(panel);
-		panel.setLayout(new GridLayout(3, 3, 0, 0));
+		botonera = new PanelBotonera();
+		contentPane.add(botonera);
+		botonera.setLayout(new GridLayout(3, 3, 0, 0));
 	}
 
 	protected PanelBotonera getPanel() {
-		return panel;
+		return botonera;
 	}
 
 	public MyButton getBoton(int i, int j) {
-		return panel.getBoton(i, j);
+		return botonera.getBoton(i, j);
 	}
 }
