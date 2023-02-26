@@ -12,30 +12,40 @@ public class GestionDatos {
 	public Coordenada[] proceso(Coordenada lastCoordenada) {
 		int value=tablero.getValorPosicion(lastCoordenada);
 		if(numerojugada<6) {
-			this.coordenadasGuardadas = new Coordenada[2];
-			if(value==0) {
-				this.coordenadasGuardadas[0]=lastCoordenada;
-				return this.coordenadasGuardadas;
+			jugadaMenor6(value, lastCoordenada);
+			return this.coordenadasGuardadas;
 			}
 
-		}
-		if(numerojugada>=6) {
-			this.coordenadasGuardadas[0]=null;
-			if(value==this.turno && tablero.comprobarBloqueada(lastCoordenada)) {
-				this.coordenadasGuardadas[1]=lastCoordenada;
-				return this.coordenadasGuardadas;
-			}
-			else if(value==0 && coordenadasGuardadas[1]!=null && lastCoordenada.casillaContigua(coordenadasGuardadas[1])) { 
-				this.coordenadasGuardadas[0]=lastCoordenada;
-				Coordenada[] auxiliar = coordenadasGuardadas;
-				coordenadasGuardadas = new Coordenada[2];
-				return auxiliar;
-			}
+		
+		else{
+			return jugadaMayor6(value, lastCoordenada);
 			
+			
+		}
+		
+	}
+	private Coordenada[] jugadaMayor6(int value, Coordenada lastCoordenada) {
+		this.coordenadasGuardadas[0]=null;
+		if(value==this.turno && tablero.comprobarBloqueada(lastCoordenada)) {
+			this.coordenadasGuardadas[1]=lastCoordenada;
+			return this.coordenadasGuardadas;
+		}
+		else if(value==0 && coordenadasGuardadas[1]!=null && lastCoordenada.casillaContigua(coordenadasGuardadas[1])) { 
+			this.coordenadasGuardadas[0]=lastCoordenada;
+			Coordenada[] auxiliar = coordenadasGuardadas;
+			coordenadasGuardadas = new Coordenada[2];
+			return auxiliar;
 		}
 		Coordenada[] nula = {null,null};
 		return nula;
 		
+	}
+	public void jugadaMenor6(int value, Coordenada lastCoordenada) {
+		this.coordenadasGuardadas = new Coordenada[2];
+		if(value==0) {
+			this.coordenadasGuardadas[0]=lastCoordenada;
+		}
+				
 	}
 	
 	public void aumentaJugada() {
