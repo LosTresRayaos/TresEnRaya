@@ -49,7 +49,7 @@ public class ParaFrameCompuesto extends FrameCompuesto{
 			public void actionPerformed(ActionEvent e) {
 				botonActual = (MyButton)e.getSource();
 				if(!victoria) {
-					respuesta=control.buttonPressed((MyButton)e.getSource());
+					respuesta=control.buttonPressed(botonActual);
 					victoria=respuesta[0];
 					seleccionado=respuesta[1];
 					cambioHecho=respuesta[2];
@@ -112,18 +112,11 @@ public class ParaFrameCompuesto extends FrameCompuesto{
                 
                 
             }
+			@Override
+			public void keyTyped(KeyEvent e) {}
 
 			@Override
-			public void keyTyped(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
+			public void keyReleased(KeyEvent e) {}
 		});
 
 		
