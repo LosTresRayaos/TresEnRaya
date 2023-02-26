@@ -11,11 +11,16 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+
+import modelo.GestionDatos;
+import modelo.GestionDeFormato;
 import vista.FrameCompuesto;
 import vista.MyButton;
 
 public class ParaFrameCompuesto extends FrameCompuesto{
 	private Controlador control = new Controlador(botonera);
+	private GestionDeFormato gestionFormato = new GestionDeFormato();
 	private ActionListener actionListener;
 	private MouseListener hover;
 	private MouseListener noHover;
@@ -33,8 +38,11 @@ public class ParaFrameCompuesto extends FrameCompuesto{
 		setFocusable(true);
 		createEvents();
 		addEvents();
+		setSavedColor();
 	}
 	
+
+
 	private void createEvents() {
 		actionListener = new ActionListener() {
 			@Override
@@ -93,7 +101,16 @@ public class ParaFrameCompuesto extends FrameCompuesto{
 		cPressed = (new KeyListener() {
 			public void keyPressed(KeyEvent e) {
                 char letra = e.getKeyChar();
-                if(letra=='c') botonera.changeColor();
+                if(letra=='c') {
+                	botonera.changeColor();
+                	try {
+						gestionFormato.saveColor(botonera.getPosColor());
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					}
+                }
+                
+                
             }
 
 			@Override
@@ -127,7 +144,7 @@ public class ParaFrameCompuesto extends FrameCompuesto{
 		}
 		((MyButton)component[0][0]).addComponentListener(windowReSized);
 		
-		addKeyListener(cPressed);
+		addKeyListener(cPressed);  //Para cambiar de color los botones en panel botonera pulsa c
 	}
 	
 	private void removeEvents() {
@@ -153,5 +170,14 @@ public class ParaFrameCompuesto extends FrameCompuesto{
 		buttonSelected.addMouseListener(this.hover);
 		buttonSelected.addMouseListener(this.noHover);
 		botonera.setBackgroundToBaseColor(buttonSelected);
+	}
+	
+	private void setSavedColor() {
+		try {
+			botonera.loadColor(gestionFormato.getColor());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 }
