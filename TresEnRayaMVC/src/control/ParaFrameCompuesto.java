@@ -99,24 +99,22 @@ public class ParaFrameCompuesto extends FrameCompuesto{
             }
         });
 		cPressed = (new KeyListener() {
-			public void keyPressed(KeyEvent e) {
-                char letra = e.getKeyChar();
-                if(letra=='c') {
-                	botonera.changeColor();
-                	try {
-						gestionFormato.saveColor(botonera.getPosColor());
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					}
-                }
-                
-                
-            }
+			public void keyPressed(KeyEvent e) {}
 			@Override
 			public void keyTyped(KeyEvent e) {}
 
 			@Override
-			public void keyReleased(KeyEvent e) {}
+			public void keyReleased(KeyEvent e) {
+				 char letra = e.getKeyChar();
+	                if(letra=='c') {
+	                	botonera.changeColor();
+	                	try {
+							gestionFormato.saveColor(botonera.getPosColor());
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+	                }
+			}
 		});
 
 		
