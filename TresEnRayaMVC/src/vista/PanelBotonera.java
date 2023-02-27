@@ -14,7 +14,7 @@ public class PanelBotonera extends JPanel {
 	private String fontStyle = "Arial";
 	private Color[] baseColor = {new Color(255,255,255), new Color(230,255,255), new Color(255,190,130), new Color(255,225,255), new Color(200,200,255)}; //Avoid values below 50
 	private Color hoverColor;
-	private int posColor=0;
+	private int posColor;
 
 	
 	public PanelBotonera() {
@@ -33,11 +33,11 @@ public class PanelBotonera extends JPanel {
 			}
 		}
 		setBackground(baseColor[posColor]);
-		hoverColor=getHoverColor(baseColor[posColor]);
+		changeHoverColor(baseColor[posColor]);
 	}
 	
-	public Color getHoverColor(Color base) {
-		return new Color(base.getRed()-50,base.getGreen()-50,base.getBlue()-50);
+	public void changeHoverColor(Color base) {
+		this.hoverColor = new Color(base.getRed()-50,base.getGreen()-50,base.getBlue()-50);
 	}
 	public MyButton getBoton(int i, int j) {
 		return botonera[i][j];
@@ -96,7 +96,7 @@ public class PanelBotonera extends JPanel {
 		if(posColor<this.baseColor.length-1) this.posColor++;
 		else this.posColor=0;
 		
-		this.hoverColor=getHoverColor(baseColor[posColor]);
+		changeHoverColor(baseColor[posColor]);
 		
 		for (int i = 0; i < botonera.length; i++) {
 			for (int j = 0; j < botonera[0].length; j++) {
@@ -124,11 +124,11 @@ public class PanelBotonera extends JPanel {
 		for (int i = 0; i < botonera.length; i++) {
 			for (int j = 0; j < botonera[0].length; j++) {
 				botonera[i][j].setBackground(this.baseColor[this.posColor]);
+				changeHoverColor(baseColor[posColor]);
 			}
 		}
 		
 	}
-
 	public String getFontStyle() {
 		return fontStyle;
 	}
